@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Музей | Админка</title>
+    <title>Админка</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
@@ -22,25 +22,25 @@
 >
     <!-- Desktop sidebar -->
     <aside
-        class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0"
+        class="z-20 hidden w-64 overflow-y-auto bg-white shadow md:block flex-shrink-0"
     >
         <div class="py-4 text-gray-500 dark:text-gray-400">
             <a
                 class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
-                href="#"
+                href="/"
             >
-                Музей
+                Store app
             </a>
 
             @include('layouts.nav')
 
             <div class="px-6 my-6">
-                <button
+                <a href="{{ route('products.create') }}"
                     class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                 >
-                    Create account
+                    Добавить товар
                     <span class="ml-2" aria-hidden="true">+</span>
-                </button>
+                </a>
             </div>
 
         </div>
@@ -72,18 +72,18 @@
         <div class="py-4 text-gray-500 dark:text-gray-400">
             <a
                 class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
-                href="#"
+                href="/"
             >
-                Windmill
+                Store app
             </a>
             @include('layouts.nav')
             <div class="px-6 my-6">
-                <button
+                <a href="{{ route('products.create') }}"
                     class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                 >
-                    Create account
+                    Добавить товар
                     <span class="ml-2" aria-hidden="true">+</span>
-                </button>
+                </a>
             </div>
         </div>
     </aside>

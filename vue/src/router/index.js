@@ -7,6 +7,7 @@ import DefaultLayout from "../components/DefaultLayout.vue";
 import AuthLayout from "../components/AuthLayout.vue";
 import ShoppingCart from "../views/ShoppingCart.vue"
 import store from "../store";
+import Orders from "../views/Orders.vue";
 
 const routes = [
   {
@@ -17,6 +18,7 @@ const routes = [
     children: [
       { path: "/products", name: "Products", component: Products },
       { path: "/shopping-cart", name: "ShoppingCart", component: ShoppingCart },
+      { path: "/orders", name: "Orders", component: Orders }
     ],
   },
   {

@@ -48,6 +48,15 @@ services:
                 - '${DB_USERNAME}'
             retries: 3
             timeout: 5s
+    vite_docker:
+        image: node:alpine
+        container_name: vite_docker
+        ports:
+            - "3000:3000"
+        working_dir: /app
+        command: 'npm run dev'
+        volumes:
+            - ./vue/:/app
 networks:
     sail:
         driver: bridge

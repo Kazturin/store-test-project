@@ -21,11 +21,18 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return redirect('dashboard');
+    });
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
 
     Route::resource('products',\App\Http\Controllers\ProductController::class);
+
+    Route::get('/orders', [\App\Http\Controllers\OrderController::class,'index'])->name('orders.index');
+    Route::post('/orders/confirm/{order}', [\App\Http\Controllers\OrderController::class,'confirm'])->name('orders.confirm');
+    Route::post('/orders/reject/{order}', [\App\Http\Controllers\OrderController::class,'reject'])->name('orders.reject');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

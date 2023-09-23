@@ -24,13 +24,12 @@ class Order extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function statusLabel(){
+    public function getStatus(){
         switch ($this->status){
-            case self::STATUS_CREATED: echo 'В ожидание'; break;
-            case self::STATUS_CONFIRMED: echo 'Подтвержден'; break;
-            case self::STATUS_REJECTED: echo 'Отклонен'; break;
-            default:
-                echo "Ошибка";
+            case self::STATUS_CREATED: return 'В ожидание'; break;
+            case self::STATUS_CONFIRMED: return 'Подтвержден'; break;
+            case self::STATUS_REJECTED: return 'Отклонен'; break;
+            default :return null;
         }
     }
 

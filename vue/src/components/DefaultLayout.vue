@@ -1,13 +1,4 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <!--
-    This example requires updating your template:
-
-    ```
-    <html class="h-full bg-gray-100">
-    <body class="h-full">
-    ```
-  -->
   <div class="min-h-full">
     <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,7 +24,7 @@
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'px-3 py-2 rounded-md text-sm font-medium',
                   ]"
-                  >{{ item.name }}
+                  >{{ item.label }}
                 </router-link>
               </div>
             </div>
@@ -136,7 +127,7 @@
                 : 'text-gray-300 hover:bg-gray-700 hover:text-white',
               'block px-3 py-2 rounded-md text-base font-medium',
             ]"
-            >{{ item.name }}
+            >{{ item.label }}
           </router-link>
         </div>
           <div class="pt-4 pb-3 border-t border-gray-700">
@@ -186,7 +177,6 @@
 
     <router-view :key="$route.path"></router-view>
 
-    <Notification />
   </div>
 </template>
 
@@ -206,7 +196,8 @@ import { computed } from "vue";
 import { useRouter } from "vue-router";
 
 const navigation = [
-  { name: "products", to: { name: "Products" } },
+  { name: "products", to: { name: "Products" }, label: "Продукты" },
+  { name: "orders", to: { name: "Orders"}, label: "Мой заказы"}
 ];
 
 export default {

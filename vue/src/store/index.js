@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import axiosClient from "../axios";
 
+
 const store = createStore({
   state: {
     user: {
@@ -13,11 +14,11 @@ const store = createStore({
       data: []
     },
     shoppingCart:[],
-    notification: {
-      show: false,
-      type: 'success',
-      message: ''
-    }
+    orders: {
+      loading: false,
+      links: [],
+      data: []
+    },
   },
   getters: {},
   actions: {
@@ -30,14 +31,18 @@ const store = createStore({
           return data;
         })
     },
-    login({commit}, user) {
-      return axiosClient.post('/login', user)
-        .then(({data}) => {
-          commit('setUser', data.user);
-          commit('setToken', data.token)
-          return data;
-        })
-    },
+      login({commit}, user) {
+
+          return axiosClient.post('/login', user)
+              .then(({data}) => {
+                  console.log(data)
+                  commit('setUser', data.user);
+                  commit('setToken', data.token);
+                  return data;
+              }).catch(error => {
+                  throw error;
+              })
+  },
     logout({commit}) {
       return axiosClient.post('/logout')
         .then(response => {
@@ -49,6 +54,7 @@ const store = createStore({
       return axiosClient.get('/user')
       .then(res => {
         commit('setUser', res.data)
+          return res.data;
       })
     },
     getProducts({commit}) {
@@ -63,6 +69,19 @@ const store = createStore({
         commit('productLoading', false)
         return error;
       })
+    },
+    getOrders({commit},payload) {
+          commit('ordersLoading', true)
+        console.log(payload)
+          return axiosClient.get(`/orders`, payload)
+              .then((res) => {
+                  console.log('orders')
+                  console.log(res.data)
+                  commit('ordersLoading', false)
+                  commit('setOrders', res.data.data)
+                  return res;
+              })
+
     },
     checkout({},payload){
        return  axiosClient.post("/checkout", payload).then((res) => {
@@ -92,14 +111,20 @@ const store = createStore({
     setProducts: (state, data) => {
       state.products.data = data.data
     },
+    ordersLoading: (state, loading) => {
+      state.orders.loading = loading;
+    },
+    setOrders: (state, data) => {
+      state.orders.data = data
+    },
     clearBasket(state){
       state.shoppingCart = [];
     },
     pushProductToBasket(state, data){
        state.shoppingCart.push(data);
     },
-  },
-  modules: {},
+  }
+
 });
 
 export default store;

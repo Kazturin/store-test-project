@@ -155,11 +155,12 @@ function login(ev) {
     .then(() => {
       loading.value = false;
       router.push({
-        name: "Dashboard",
+        name: "Products",
       });
     })
     .catch((err) => {
       loading.value = false;
+      console.log(err)
       errorMsg.value = err.response.data.error;
     });
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -17,11 +18,6 @@ class ProductController extends Controller
      */
     public function index()
     {
-        Order::create([
-            'number' => '11111',
-            'product_id' => 2,
-            'created_by' => 1
-        ]);
 
         $products = Product::paginate(10);
 
