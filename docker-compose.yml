@@ -3,6 +3,7 @@ services:
         build:
             context: ./vendor/laravel/sail/runtimes/8.2
             dockerfile: Dockerfile
+            command: sh -c "npm install && npm run build"
             args:
                 WWWGROUP: '${WWWGROUP}'
         image: sail-8.2/app
@@ -51,10 +52,10 @@ services:
     vite_docker:
         image: node:alpine
         container_name: vite_docker
+        command: sh -c "npm install && npm install axios && npm run build"
         ports:
             - "3000:3000"
         working_dir: /app
-        command: 'npm run dev'
         volumes:
             - ./vue/:/app
 networks:
